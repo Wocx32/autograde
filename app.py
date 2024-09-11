@@ -5,8 +5,11 @@ from flask import Flask, render_template, request, redirect
 from celery import Celery
 from werkzeug.utils import secure_filename
 from plugin import run
+from setup_db import setup
 
 DB_PATH = 'db/db.sqlite'
+
+setup()
 
 app = Flask(__name__)
 celery = Celery('tasks', broker='redis://redis:6379')
