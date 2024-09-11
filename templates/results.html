@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Test Case Number</th>
+      <th>Passed</th>
+      <th>Failed</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for test_case in test_cases %}
+        <tr>
+            <td>{{test_case[2]}}</td>
+            <td>{{test_case[3]}}</td>
+            <td>{{test_case[4]}}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>

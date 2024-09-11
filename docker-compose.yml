@@ -1,0 +1,28 @@
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: .docker/flask/Dockerfile
+    ports:
+      - 3031:3031
+    volumes:
+      - ./db:/usr/src/app/db
+      - ./uploads:/usr/src/app/uploads
+      - ./tests:/usr/src/app/tests
+    depends_on:
+      - celery
+  
+  celery:
+    build:
+      context: .
+      dockerfile: .docker/celery/Dockerfile
+    volumes:
+      - ./db:/usr/src/app/db
+      - ./uploads:/usr/src/app/uploads
+      - ./tests:/usr/src/app/tests
+    depends_on:
+      - redis
+    
+  redis:
+    image: redis:7.4.0-alpine
+  
